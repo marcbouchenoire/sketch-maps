@@ -1,0 +1,89 @@
+@import "utils.js"
+
+var onRun = function(context) {
+  initContext(context)
+
+  function addMap() {
+    var currentLayer = (selection.count() > 0) ? selection[0] : false;
+    if (!currentLayer) {
+      showMessage("🗺 No layers selected.")
+      return
+    } else if (selection.count() > 1) {
+      showMessage("🗺 You can only fill one layer.")
+      return
+    } else if (is.artboard(currentLayer)) {
+      showMessage("🗺 You can't fill an artboard.")
+      return
+    }
+
+    var window = createWindow(),
+        alert = window[0],
+        inputs = window[1];
+    var response = alert.runModal();
+
+    var values = {
+      adress: inputs[0].stringValue(),
+      zoom: parseFloat(inputs[1].stringValue()),
+      bearing: parseFloat(inputs[2].stringValue()),
+      pitch: parseFloat(inputs[3].stringValue()),
+      style: inputs[4].titleOfSelectedItem(),
+      customStyle: inputs[5].stringValue()
+    }
+
+    if (response == "1000") {
+      if (values.adress == "") {
+        showMessage("🗺 You have to specify an adress.")
+        return
+      } else if (values.zoom < 0 || values.zoom > 20) {
+        showMessage("🗺 Zoom level must be between 0-20.")
+        return
+      } else if (values.bearing < 0 || values.bearing > 360) {
+        showMessage("🗺 Bearing must be between 0-360.")
+        return
+      } else if (values.pitch < 0 || values.pitch > 60) {
+        showMessage("🗺 Pitch must be between 0-60.")
+        return
+      }
+
+      if (values.customStyle == "") {
+        if (values.style == "Streets") values.style = "mapbox/streets-v10";
+        else if (values.style == "Satellite") values.style = "mapbox/satellite-v9";
+        else if (values.style == "Outdoors") values.style = "mapbox/outdoors-v10";
+        else if (values.style == "Light") values.style = "mapbox/light-v9";
+        else if (values.style == "Dark") values.style = "mapbox/dark-v9";
+      } else {
+        var customStyleURL = values.customStyle.match(/^mapbox:\/\/styles\/([^]+\/[^]+)/);
+        if (customStyleURL) {
+          values.style = customStyleURL[1];
+        } else {
+          showMessage("🗺 The Custom Style URL appears to be invalid.")
+          return
+        }
+      }
+
+      var geocoding = get('https://api.tiles.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(values.adress) + '.json?limit=1&access_token=' + token);
+      var geocodingJSON = JSON.parse(toNSString(geocoding));
+      if (geocodingJSON.features.length > 0) {
+        var coordinates = geocodingJSON.features[0].center;
+        var width = currentLayer.frame().width() > 1280 ? 1280 : currentLayer.frame().width();
+        var height = currentLayer.frame().height() > 1280 ? 1280 : currentLayer.frame().height();
+        var image = get("https://api.mapbox.com/styles/v1/" + values.style + "/static/" + coordinates[0] + "," + coordinates[1] + "," + values.zoom + "," + values.bearing + "," + values.pitch + "/" + width + "x" + height + "@2x?access_token=" + token);
+        if (toNSString(image) == null) {
+          var fill = currentLayer.style().fills().firstObject();
+          fill.setFillType(4);
+          fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(NSImage.alloc().initWithData(image), false));
+          currentLayer.style().fills().firstObject().setPatternFillType(1);
+        } else {
+          var message = JSON.parse(toNSString(image)).message;
+          showMessage("🗺 " + message)
+          return
+        }
+      } else {
+        showMessage("🗺 Nothing found at this address.")
+        return
+      }
+    }
+  }
+
+  addMap()
+}

@@ -1,0 +1,23 @@
+{
+  "name": "🗺 Sketch Maps",
+  "description" : "A plugin that uses the Mapbox API to fill layers with specific and custom maps.",
+  "author" : "Marc Bouchenoire",
+  "authorEmail" : "mail@marcbouchenoire.com",
+  "homepage": "https://github.com/bouchenoiremarc/Sketch-Maps",
+  "version" : "1.0",
+  "identifier" : "com.bouchenoiremarc.sketch-maps",
+  "compatibleVersion": 4,
+  "bundleVersion": "1",
+  "commands" : [
+    {
+      "script" : "main.cocoascript",
+      "name" : "Fill with Map",
+      "identifier" : "addMap"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "addMap"
+    ]
+  }
+}
