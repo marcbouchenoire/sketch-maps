@@ -113,11 +113,11 @@ function createWindow() {
   alert.addButtonWithTitle("OK")
   alert.addButtonWithTitle("Cancel")
   alert.setMessageText("Sketch Maps")
-  alert.setInformativeText("Enter an adress to fill the selected layer with a map. If you hide the watermarks, you are legally required to include proper attribution elsewhere on the document.")
+  alert.setInformativeText("Enter an address to fill the selected layer with a map. If you hide the watermarks, you are legally required to include proper attribution elsewhere in the document.")
   alert.setIcon(NSImage.alloc().initByReferencingFile(plugin.urlForResourceNamed("icon@2x.png").path()));
 
-  var adressLabel = createLabel("Adress", 12, true, NSMakeRect(0, 0, 300, 16)),
-  adressTextField = createTextField("", "La Tour Eiffel, Paris, France", NSMakeRect(0, 0, 300, 24)),
+  var addressLabel = createLabel("Address", 12, true, NSMakeRect(0, 0, 300, 16)),
+  addressTextField = createTextField("", "La Tour Eiffel, Paris, France", NSMakeRect(0, 0, 300, 24)),
   optionsView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 136)),
   optionsLabel = createLabel("Options", 12, true, NSMakeRect(0, 110, 300, 16)),
   zoomLabel = createLabel("Zoom", 12, false, NSMakeRect(0, 86, 300, 16)),
@@ -135,8 +135,8 @@ function createWindow() {
   customOptionalLabel = createLabel("(Optional)", 12, false, NSMakeRect(211, 30, 300, 16), 0.3),
   customTextField = createTextField("", "mapbox://styles/", NSMakeRect(105, 0, 195, 24));
 
-  alert.addAccessoryView(adressLabel);
-  alert.addAccessoryView(adressTextField);
+  alert.addAccessoryView(addressLabel);
+  alert.addAccessoryView(addressTextField);
   optionsView.addSubview(optionsLabel);
   optionsView.addSubview(zoomLabel);
   optionsView.addSubview(zoomRangeLabel);
@@ -154,12 +154,12 @@ function createWindow() {
   optionsView.addSubview(customTextField);
   alert.addAccessoryView(optionsView);
 
-  alert.alert().window().setInitialFirstResponder(adressTextField);
-  adressTextField.setNextKeyView(zoomTextField);
+  alert.alert().window().setInitialFirstResponder(addressTextField);
+  addressTextField.setNextKeyView(zoomTextField);
   zoomTextField.setNextKeyView(bearingTextField);
   bearingTextField.setNextKeyView(pitchTextField);
 
-  var inputs = [adressTextField, zoomTextField, bearingTextField, pitchTextField, styleDropdown, customTextField];
+  var inputs = [addressTextField, zoomTextField, bearingTextField, pitchTextField, styleDropdown, customTextField];
 
   return [alert, inputs]
 }

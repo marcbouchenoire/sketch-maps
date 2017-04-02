@@ -6,7 +6,7 @@ var onRun = function(context) {
   function addMap() {
     var currentLayer = (selection.count() > 0) ? selection[0] : false;
     if (!currentLayer) {
-      showMessage("🗺 No layers selected.")
+      showMessage("🗺 No layer selected.")
       return
     } else if (selection.count() > 1) {
       showMessage("🗺 You can only fill one layer.")
@@ -22,7 +22,7 @@ var onRun = function(context) {
     var response = alert.runModal();
 
     var values = {
-      adress: inputs[0].stringValue(),
+      address: inputs[0].stringValue(),
       zoom: parseFloat(inputs[1].stringValue()),
       bearing: parseFloat(inputs[2].stringValue()),
       pitch: parseFloat(inputs[3].stringValue()),
@@ -31,8 +31,8 @@ var onRun = function(context) {
     }
 
     if (response == "1000") {
-      if (values.adress == "") {
-        showMessage("🗺 You have to specify an adress.")
+      if (values.address == "") {
+        showMessage("🗺 You have to specify an address.")
         return
       } else if (values.zoom < 0 || values.zoom > 20) {
         showMessage("🗺 Zoom level must be between 0-20.")
@@ -61,7 +61,7 @@ var onRun = function(context) {
         }
       }
 
-      var geocoding = get('https://api.tiles.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(values.adress) + '.json?limit=1&access_token=' + token);
+      var geocoding = get('https://api.tiles.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(values.address) + '.json?limit=1&access_token=' + token);
       var geocodingJSON = JSON.parse(toNSString(geocoding));
       if (geocodingJSON.features.length > 0) {
         var coordinates = geocodingJSON.features[0].center;
