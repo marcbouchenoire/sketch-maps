@@ -4,7 +4,7 @@
   "author" : "Marc Bouchenoire",
   "authorEmail" : "mail@marcbouchenoire.com",
   "homepage": "https://github.com/bouchenoiremarc/Sketch-Maps",
-  "version" : "1.0",
+  "version" : "1.1",
   "appcast": "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Maps/master/.appcast.xml",
   "identifier" : "com.bouchenoiremarc.sketch-maps",
   "compatibleVersion": 4,

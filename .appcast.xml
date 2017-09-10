@@ -2,7 +2,22 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <item>
+      <title>Version 1.0</title>
       <enclosure url="https://github.com/bouchenoiremarc/Sketch-Maps/releases/download/v1.0/Sketch.Maps.sketchplugin.zip" sparkle:version="1.0"/>
+    </item>
+    <item>
+      <title>Version 1.1</title>
+      <description>
+        <![CDATA[
+        <ul>
+          <li>New icon</li>
+          <li>New Mapbox default themes</li>
+          <li>Added "Open Mapbox Studio" command</li>
+          <li>Added support for Sketch Runner</li>
+        </ul>
+        ]]>
+      </description>
+      <enclosure url="https://github.com/bouchenoiremarc/Sketch-Maps/releases/download/v1.1/Sketch.Maps.sketchplugin.zip" sparkle:version="1.1"/>
     </item>
   </channel>
 </rss>
