@@ -130,7 +130,7 @@ function createWindow() {
   pitchRangeLabel = createLabel("(60)", 12, false, NSMakeRect(242, 86, 300, 16), 0.3),
   pitchTextField = createTextField("0", null, NSMakeRect(210, 56, 90, 24)),
   styleLabel = createLabel("Style", 12, false, NSMakeRect(0, 30, 300, 16)),
-  styleDropdown = createDropdown(["Streets", "Satellite", "Outdoors", "Light", "Dark"], NSMakeRect(-2, -1, 96, 24)),
+  styleDropdown = createDropdown(["Streets", "Satellite", "Satellite Streets", "Outdoors", "Light", "Dark", "Traffic Day", "Traffic Night", "Navigation Preview Day", "Navigation Preview Night", "Navigation Guidance Day", "Navigation Guidance Night"], NSMakeRect(-2, -1, 96, 24)),
   customLabel = createLabel("Custom Style URL", 12, false, NSMakeRect(105, 30, 300, 16)),
   customOptionalLabel = createLabel("(Optional)", 12, false, NSMakeRect(211, 30, 300, 16), 0.3),
   customTextField = createTextField("", "mapbox://styles/", NSMakeRect(105, 0, 195, 24));

@@ -48,9 +48,16 @@ var onRun = function(context) {
       if (values.customStyle == "") {
         if (values.style == "Streets") values.style = "mapbox/streets-v10";
         else if (values.style == "Satellite") values.style = "mapbox/satellite-v9";
+        else if (values.style == "Satellite Streets") values.style = "mapbox/satellite-streets-v10";
         else if (values.style == "Outdoors") values.style = "mapbox/outdoors-v10";
         else if (values.style == "Light") values.style = "mapbox/light-v9";
         else if (values.style == "Dark") values.style = "mapbox/dark-v9";
+        else if (values.style == "Traffic Day") values.style = "mapbox/traffic-day-v2";
+        else if (values.style == "Traffic Night") values.style = "mapbox/traffic-night-v2";
+        else if (values.style == "Navigation Preview Day") values.style = "mapbox/navigation-preview-day-v2";
+        else if (values.style == "Navigation Preview Night") values.style = "mapbox/navigation-preview-night-v2";
+        else if (values.style == "Navigation Guidance Day") values.style = "mapbox/navigation-guidance-day-v2";
+        else if (values.style == "Navigation Guidance Night") values.style = "mapbox/navigation-guidance-night-v2";
       } else {
         var customStyleURL = values.customStyle.match(/^mapbox:\/\/styles\/([^]+\/[^]+)/);
         if (customStyleURL) {
