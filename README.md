@@ -6,17 +6,17 @@ Sketch Maps is a plugin that uses the Mapbox API to fill layers with specific an
 
 ### Basic
 
-![Basic example](docs/basic.gif)
+<img src="docs/basic.gif" width="680" alt="Basic example">
 
 ### Options (Zoom, Bearing and Pitch)
 
-![Options example](docs/options.gif)
+<img src="docs/options.gif" width="680" alt="Options example">
 
 ### Custom Styles
 
 In addition to 5 professionally designed styles provided by Mapbox, you can use custom styles designed in [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) with their Style URL (`mapbox://styles/username/style`).
 
-![Custom Styles example](docs/custom.gif)
+<img src="docs/custom.gif" width="680" alt="Custom Styles example">
 
 [Swiss Ski Style](https://github.com/mapbox/mapbox-gl-swiss-ski-style) from Mapbox.
 
