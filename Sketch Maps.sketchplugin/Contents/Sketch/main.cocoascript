@@ -94,3 +94,7 @@ var onRun = function(context) {
 
   addMap()
 }
+
+var openStudio = function() {
+  open("https://www.mapbox.com/studio/");
+}

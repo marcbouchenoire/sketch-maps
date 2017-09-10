@@ -29,6 +29,11 @@ function get(url) {
   return response
 }
 
+function open(url) {
+  var nsurl = NSURL.URLWithString(url);
+  NSWorkspace.sharedWorkspace().openURL(nsurl);
+}
+
 //--------------------------------------//
 //             Layer Types              //
 //--------------------------------------//

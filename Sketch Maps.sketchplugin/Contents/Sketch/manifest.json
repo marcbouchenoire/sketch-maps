@@ -14,11 +14,19 @@
       "script" : "main.cocoascript",
       "name" : "Fill with Map",
       "identifier" : "addMap"
+    },
+    {
+      "script" : "main.cocoascript",
+      "name" : "Open Mapbox Studio",
+      "identifier" : "openStudio",
+      "handler" : "openStudio"
     }
   ],
   "menu" : {
     "items" : [
-      "addMap"
+      "addMap",
+      "-",
+      "openStudio"
     ]
   }
 }
