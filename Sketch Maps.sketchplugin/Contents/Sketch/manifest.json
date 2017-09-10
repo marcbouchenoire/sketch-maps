@@ -13,13 +13,17 @@
     {
       "script" : "main.cocoascript",
       "name" : "Fill with Map",
-      "identifier" : "addMap"
+      "identifier" : "addMap",
+      "description" : "Fill selected layer with a Map.",
+      "icon" : "fillMap@2x.png"
     },
     {
       "script" : "main.cocoascript",
       "name" : "Open Mapbox Studio",
       "identifier" : "openStudio",
-      "handler" : "openStudio"
+      "handler" : "openStudio",
+      "description" : "Open Mapbox Studio in your browser.",
+      "icon" : "openStudio@2x.png"
     }
   ],
   "menu" : {
