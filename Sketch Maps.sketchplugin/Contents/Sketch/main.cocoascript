@@ -78,7 +78,11 @@ var onRun = function(context) {
         if (toNSString(image) == null) {
           var fill = currentLayer.style().fills().firstObject();
           fill.setFillType(4);
-          fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(NSImage.alloc().initWithData(image), false));
+          if (MSApplicationMetadata.metadata().appVersion < 47) {
+            fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(NSImage.alloc().initWithData(image), false));
+          } else {
+            fill.setImage(MSImageData.alloc().initWithImage(NSImage.alloc().initWithData(image)));
+          }
           currentLayer.style().fills().firstObject().setPatternFillType(1);
         } else {
           var message = JSON.parse(toNSString(image)).message;
