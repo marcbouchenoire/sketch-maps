@@ -1,36 +1,33 @@
 {
-  "name": "🗺 Sketch Maps",
-  "description" : "A plugin that uses the Mapbox API to fill layers with specific and custom maps.",
-  "author" : "Marc Bouchenoire",
-  "authorEmail" : "mail@marcbouchenoire.com",
+  "name": "Sketch Maps",
+  "description":
+    "A plugin that uses the Mapbox API to fill layers with specific and custom maps.",
+  "author": "Marc Bouchenoire",
+  "authorEmail": "mail@marcbouchenoire.com",
   "homepage": "https://github.com/bouchenoiremarc/Sketch-Maps",
-  "version" : "1.1.1",
-  "appcast": "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Maps/master/.appcast.xml",
-  "identifier" : "com.bouchenoiremarc.sketch-maps",
-  "compatibleVersion": 4,
-  "bundleVersion": "1",
-  "commands" : [
+  "version": "1.1.1",
+  "appcast":
+    "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Maps/master/.appcast.xml",
+  "icon": "settings@2x.png",
+  "identifier": "com.bouchenoiremarc.sketch-maps",
+  "commands": [
     {
-      "script" : "main.cocoascript",
-      "name" : "Fill with Map",
-      "identifier" : "addMap",
-      "description" : "Fill selected layer with a Map.",
-      "icon" : "fillMap@2x.png"
+      "script": "main.cocoascript",
+      "name": "Fill with Map",
+      "identifier": "addMap",
+      "description": "Fill selected layer with a Map.",
+      "icon": "fillMap@2x.png"
     },
     {
-      "script" : "main.cocoascript",
-      "name" : "Open Mapbox Studio",
-      "identifier" : "openStudio",
-      "handler" : "openStudio",
-      "description" : "Open Mapbox Studio in your browser.",
-      "icon" : "openStudio@2x.png"
+      "script": "main.cocoascript",
+      "name": "Open Mapbox Studio",
+      "identifier": "openStudio",
+      "handler": "openStudio",
+      "description": "Open Mapbox Studio in your browser.",
+      "icon": "openStudio@2x.png"
     }
   ],
-  "menu" : {
-    "items" : [
-      "addMap",
-      "-",
-      "openStudio"
-    ]
+  "menu": {
+    "items": ["addMap", "-", "openStudio"]
   }
 }
