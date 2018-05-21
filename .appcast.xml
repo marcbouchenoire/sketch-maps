@@ -30,5 +30,16 @@
       </description>
       <enclosure url="https://github.com/bouchenoiremarc/Sketch-Maps/releases/download/v1.1.1/Sketch.Maps.sketchplugin.zip" sparkle:version="1.1.1"/>
     </item>
+    <item>
+      <title>Version 1.1.2</title>
+      <description>
+        <![CDATA[
+        <ul>
+          <li>New icon for Sketch 50+</li>
+        </ul>
+        ]]>
+      </description>
+      <enclosure url="https://github.com/bouchenoiremarc/Sketch-Maps/releases/download/v1.1.2/Sketch.Maps.sketchplugin.zip" sparkle:version="1.1.2"/>
+    </item>
   </channel>
 </rss>
