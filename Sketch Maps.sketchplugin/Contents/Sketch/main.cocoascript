@@ -3,6 +3,26 @@
 var onRun = function(context) {
   initContext(context)
 
+  function getMap(coordinates, layer, values) {
+    var width = layer.frame().width() > 1280 ? 1280 : layer.frame().width();
+    var height = layer.frame().height() > 1280 ? 1280 : layer.frame().height();
+    var image = get("https://api.mapbox.com/styles/v1/" + values.style + "/static/" + coordinates + "," + values.zoom + "," + values.bearing + "," + values.pitch + "/" + width + "x" + height + "@2x?access_token=" + token);
+    if (toNSString(image) == null) {
+      var fill = layer.style().fills().firstObject();
+      fill.setFillType(4);
+      if (MSApplicationMetadata.metadata().appVersion < 47) {
+        fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(NSImage.alloc().initWithData(image), false));
+      } else {
+        fill.setImage(MSImageData.alloc().initWithImage(NSImage.alloc().initWithData(image)));
+      }
+      layer.style().fills().firstObject().setPatternFillType(1);
+    } else {
+      var message = JSON.parse(toNSString(image)).message;
+      showMessage("🗺 " + message)
+      return
+    }
+  }
+
   function addMap() {
     var currentLayer = (selection.count() > 0) ? selection[0] : false;
     if (!currentLayer) {
@@ -68,30 +88,20 @@ var onRun = function(context) {
         }
       }
 
-      var geocoding = get('https://api.tiles.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(values.address) + '.json?limit=1&access_token=' + token);
-      var geocodingJSON = JSON.parse(toNSString(geocoding));
-      if (geocodingJSON.features.length > 0) {
-        var coordinates = geocodingJSON.features[0].center;
-        var width = currentLayer.frame().width() > 1280 ? 1280 : currentLayer.frame().width();
-        var height = currentLayer.frame().height() > 1280 ? 1280 : currentLayer.frame().height();
-        var image = get("https://api.mapbox.com/styles/v1/" + values.style + "/static/" + coordinates[0] + "," + coordinates[1] + "," + values.zoom + "," + values.bearing + "," + values.pitch + "/" + width + "x" + height + "@2x?access_token=" + token);
-        if (toNSString(image) == null) {
-          var fill = currentLayer.style().fills().firstObject();
-          fill.setFillType(4);
-          if (MSApplicationMetadata.metadata().appVersion < 47) {
-            fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(NSImage.alloc().initWithData(image), false));
-          } else {
-            fill.setImage(MSImageData.alloc().initWithImage(NSImage.alloc().initWithData(image)));
-          }
-          currentLayer.style().fills().firstObject().setPatternFillType(1);
+      var coordinates = values.address.match(/(-*[\d|\.]+), *(-*[\d|\.]+)/);
+
+      if (coordinates) {
+        getMap(coordinates[2] + "," + coordinates[1], currentLayer, values);
+      } else {
+        var geocoding = get('https://api.tiles.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(values.address) + '.json?limit=1&access_token=' + token);
+        var geocodingJSON = JSON.parse(toNSString(geocoding));
+        if (geocodingJSON.features.length > 0) {
+          var coordinates = geocodingJSON.features[0].center;
+          getMap(coordinates[0] + "," + coordinates[1], currentLayer, values);
         } else {
-          var message = JSON.parse(toNSString(image)).message;
-          showMessage("🗺 " + message)
+          showMessage("🗺 Nothing found at this address.")
           return
         }
-      } else {
-        showMessage("🗺 Nothing found at this address.")
-        return
       }
     }
   }
